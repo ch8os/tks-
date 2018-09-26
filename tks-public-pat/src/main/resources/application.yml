@@ -1,0 +1,27 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:18761/eureka/
+server:
+  port: 18994
+spring:
+  application:
+    name: tks-public-pat
+  http:
+    multipart:
+      max-file-size: 2000Mb
+      max-request-size: 2000Mb
+  sleuth:
+    sampler:
+      percentage: 1.0
+  zipkin:
+    base-url: http://localhost:19411
+#multipart:
+#  enabled: true
+#  max-file-size: 500mb
+#  max-request-size: 500mb
+#缓存配置
+cache:
+  type: ehcache
+  ehcache:
+    config: classpath:config/ehcache.xml

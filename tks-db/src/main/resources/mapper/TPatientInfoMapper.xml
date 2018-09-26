@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tks.db.common.mapper.TPatientInfoMapper">
+  <resultMap id="BaseResultMap" type="com.tks.resource.common.entity.TPatientInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPENID" jdbcType="VARCHAR" property="openid" />
+    <result column="MOBILEPHONE" jdbcType="INTEGER" property="mobilephone" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="IDCARD" jdbcType="VARCHAR" property="idcard" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="DIABETES_TYPE" jdbcType="VARCHAR" property="diabetesType" />
+    <result column="DIAGNOSIS_DATE" jdbcType="TIMESTAMP" property="diagnosisDate" />
+    <result column="OTHER_DISEASES" jdbcType="VARCHAR" property="otherDiseases" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, OPENID, MOBILEPHONE, NAME, IDCARD, CITY, DIABETES_TYPE, DIAGNOSIS_DATE, OTHER_DISEASES, 
+    CREATE_TIME, UPDATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="com.tks.db.common.example.TPatientInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_patient_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_patient_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_patient_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tks.db.common.example.TPatientInfoExample">
+    delete from t_patient_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tks.resource.common.entity.TPatientInfo">
+    insert into t_patient_info (ID, OPENID, MOBILEPHONE, 
+      NAME, IDCARD, CITY, 
+      DIABETES_TYPE, DIAGNOSIS_DATE, OTHER_DISEASES, 
+      CREATE_TIME, UPDATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{mobilephone,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{diabetesType,jdbcType=VARCHAR}, #{diagnosisDate,jdbcType=TIMESTAMP}, #{otherDiseases,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tks.resource.common.entity.TPatientInfo">
+    insert into t_patient_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="openid != null">
+        OPENID,
+      </if>
+      <if test="mobilephone != null">
+        MOBILEPHONE,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="idcard != null">
+        IDCARD,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="diabetesType != null">
+        DIABETES_TYPE,
+      </if>
+      <if test="diagnosisDate != null">
+        DIAGNOSIS_DATE,
+      </if>
+      <if test="otherDiseases != null">
+        OTHER_DISEASES,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        #{mobilephone,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetesType != null">
+        #{diabetesType,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDate != null">
+        #{diagnosisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherDiseases != null">
+        #{otherDiseases,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tks.db.common.example.TPatientInfoExample" resultType="java.lang.Long">
+    select count(*) from t_patient_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_patient_info
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openid != null">
+        OPENID = #{record.openid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilephone != null">
+        MOBILEPHONE = #{record.mobilephone,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null">
+        IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        CITY = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diabetesType != null">
+        DIABETES_TYPE = #{record.diabetesType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diagnosisDate != null">
+        DIAGNOSIS_DATE = #{record.diagnosisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.otherDiseases != null">
+        OTHER_DISEASES = #{record.otherDiseases,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_patient_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      OPENID = #{record.openid,jdbcType=VARCHAR},
+      MOBILEPHONE = #{record.mobilephone,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      IDCARD = #{record.idcard,jdbcType=VARCHAR},
+      CITY = #{record.city,jdbcType=VARCHAR},
+      DIABETES_TYPE = #{record.diabetesType,jdbcType=VARCHAR},
+      DIAGNOSIS_DATE = #{record.diagnosisDate,jdbcType=TIMESTAMP},
+      OTHER_DISEASES = #{record.otherDiseases,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tks.resource.common.entity.TPatientInfo">
+    update t_patient_info
+    <set>
+      <if test="openid != null">
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        MOBILEPHONE = #{mobilephone,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        IDCARD = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="diabetesType != null">
+        DIABETES_TYPE = #{diabetesType,jdbcType=VARCHAR},
+      </if>
+      <if test="diagnosisDate != null">
+        DIAGNOSIS_DATE = #{diagnosisDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="otherDiseases != null">
+        OTHER_DISEASES = #{otherDiseases,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tks.resource.common.entity.TPatientInfo">
+    update t_patient_info
+    set OPENID = #{openid,jdbcType=VARCHAR},
+      MOBILEPHONE = #{mobilephone,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      IDCARD = #{idcard,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      DIABETES_TYPE = #{diabetesType,jdbcType=VARCHAR},
+      DIAGNOSIS_DATE = #{diagnosisDate,jdbcType=TIMESTAMP},
+      OTHER_DISEASES = #{otherDiseases,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

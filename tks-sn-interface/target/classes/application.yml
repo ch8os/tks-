@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: tks-sn-interface
+  profiles:
+    active: dev
+  sleuth:
+    sampler:
+      percentage: 1.0
+  zipkin:
+    base-url: http://localhost:19411
+server:
+  port: 18767
+  
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:18761/eureka/  

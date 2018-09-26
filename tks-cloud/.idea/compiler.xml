@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="tks-config" />
+        <module name="tks-db" />
+        <module name="tks-eureka" />
+        <module name="tks-public-doc" />
+        <module name="tks-public-pat" />
+        <module name="tks-resource" />
+        <module name="tks-sleuth" />
+        <module name="tks-third-interface" />
+        <module name="tks-web" />
+        <module name="tks-wx-interface" />
+        <module name="tks-zuul" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="tks-sn-interface" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

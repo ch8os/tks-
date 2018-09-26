@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name=”viewport” content=”initial-scale=1, maximum-scale=3, minimum-scale=1, user-scalable=no”> 
+<title>Title</title>
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+   <div class="row">
+      <div class="col-xs-6">电话号码:</div>
+      <div class="col-xs-6"><input type="text" name="phone" id="phone"></div>      
+   </div>
+    <div class="row">
+      <div class="col-xs-6">短信验证码</div>
+      <div class="col-xs-6"><input id="phoneMessage" type="text" name="phoneMessage"
+				style="width: 80px;"> <input id="btnSendCode" type="button"
+				style="width: 100px; font-size: 14px;" value="获取验证码"
+				onclick="phoneMessage()"></div>      
+   </div>
+   <td><button type="button" onclick="submit()">提交</button></td>
+</div>
+	<form action="" method="post">
+	<table>
+		<tr>
+			<td>电话号码:</td>
+			<td><input type="text" name="phone" id="phone"></td>
+		</tr>
+		<tr>
+			<td>短信验证码：</td>
+			<td><input id="phoneMessage" type="text" name="phoneMessage"
+				style="width: 80px;"> <input id="btnSendCode" type="button"
+				style="width: 100px; font-size: 14px;" value="获取验证码"
+				onclick="phoneMessageCodeSend()"></td>
+			<td id="CodeInput"></td>
+		</tr>
+		<tr>
+			<td><button type="submit">提交</button></td>
+		</tr>
+		</tr></table></form>
+
+	<script type="text/javascript">
+		//发送按钮的点击事件
+		function phoneMessage() {
+			//向后端请求发送短信，传值过去判断
+			var phone = document.getElementById("phone").value;//获取手机号数值
+			$.ajax({
+				url : "/web/sendVerifyCode",
+				data : {
+					"mobile" : phone
+				},
+				type : "get",
+				success : function(data) {
+					if (data.code) {
+						alert("发送短信成功");
+					} else {
+						alert(data.msg);
+					}
+					console.log(data);
+				}
+			});
+		}
+
+		function submit() {
+			window.location.href='/web/';
+		}
+	</script>
+</body>
+</html>

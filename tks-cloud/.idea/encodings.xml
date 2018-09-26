@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-db" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-public-doc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-public-pat" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-resource" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-sleuth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-sn-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-third-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-wx-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../tks-zuul" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tks.db.common.mapper.TScanRecordMapper">
+  <resultMap id="BaseResultMap" type="com.tks.resource.common.entity.TScanRecord">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DOC_ID" jdbcType="VARCHAR" property="docId" />
+    <result column="PAT_OPENID" jdbcType="VARCHAR" property="patOpenid" />
+    <result column="ADVICE_ID" jdbcType="VARCHAR" property="adviceId" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, DOC_ID, PAT_OPENID, ADVICE_ID, CREATE_TIME
+  </sql>
+  <select id="selectByExample" parameterType="com.tks.db.common.example.TScanRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_scan_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_scan_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_scan_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tks.db.common.example.TScanRecordExample">
+    delete from t_scan_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tks.resource.common.entity.TScanRecord">
+    insert into t_scan_record (ID, DOC_ID, PAT_OPENID, 
+      ADVICE_ID, CREATE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{docId,jdbcType=VARCHAR}, #{patOpenid,jdbcType=VARCHAR}, 
+      #{adviceId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tks.resource.common.entity.TScanRecord">
+    insert into t_scan_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="docId != null">
+        DOC_ID,
+      </if>
+      <if test="patOpenid != null">
+        PAT_OPENID,
+      </if>
+      <if test="adviceId != null">
+        ADVICE_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="docId != null">
+        #{docId,jdbcType=VARCHAR},
+      </if>
+      <if test="patOpenid != null">
+        #{patOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="adviceId != null">
+        #{adviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tks.db.common.example.TScanRecordExample" resultType="java.lang.Long">
+    select count(*) from t_scan_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_scan_record
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.docId != null">
+        DOC_ID = #{record.docId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patOpenid != null">
+        PAT_OPENID = #{record.patOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adviceId != null">
+        ADVICE_ID = #{record.adviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_scan_record
+    set ID = #{record.id,jdbcType=VARCHAR},
+      DOC_ID = #{record.docId,jdbcType=VARCHAR},
+      PAT_OPENID = #{record.patOpenid,jdbcType=VARCHAR},
+      ADVICE_ID = #{record.adviceId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tks.resource.common.entity.TScanRecord">
+    update t_scan_record
+    <set>
+      <if test="docId != null">
+        DOC_ID = #{docId,jdbcType=VARCHAR},
+      </if>
+      <if test="patOpenid != null">
+        PAT_OPENID = #{patOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="adviceId != null">
+        ADVICE_ID = #{adviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tks.resource.common.entity.TScanRecord">
+    update t_scan_record
+    set DOC_ID = #{docId,jdbcType=VARCHAR},
+      PAT_OPENID = #{patOpenid,jdbcType=VARCHAR},
+      ADVICE_ID = #{adviceId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
